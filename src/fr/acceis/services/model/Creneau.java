@@ -1,51 +1,65 @@
 package fr.acceis.services.model;
 
-public class Creneau {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	private long id;
-	
-	private Salle salle;
-	
-	private Horaire horaire;
-	
-	private Cours cours;
+@Entity
+@Table(name = "Creneau")
+public class Creneau
+{
+	@Id
+	private long	id;
+	private Salle	salle;
+	private Horaire	horaire;
+	private Cours	cours;
 
-	public long getId() {
-		return id;
+	public long getId()
+	{
+		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 
-	public Salle getSalle() {
-		return salle;
+	public Salle getSalle()
+	{
+		return this.salle;
 	}
 
-	public void setSalle(Salle salle) {
+	public void setSalle(Salle salle)
+	{
 		this.salle = salle;
 	}
 
-	public Horaire getHoraire() {
-		return horaire;
+	public Horaire getHoraire()
+	{
+		return this.horaire;
 	}
 
-	public void setHoraire(Horaire horaire) {
+	public void setHoraire(Horaire horaire)
+	{
 		this.horaire = horaire;
 	}
 
-	public Cours getCours() {
-		return cours;
+	public Cours getCours()
+	{
+		return this.cours;
 	}
 
-	public void setCours(Cours cours) {
+	public void setCours(Cours cours)
+	{
 		this.cours = cours;
 	}
-	
-	public String toString() {
-		String result = "En " + getSalle() + "\n";
-		result += getHoraire();
+
+	@Override
+	public String toString()
+	{
+		String result = "En " + this.getSalle() + "\n";
+		result += this.getHoraire();
 		return result;
 	}
-	
+
 }

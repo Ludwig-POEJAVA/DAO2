@@ -2,46 +2,58 @@ package fr.acceis.services.model;
 
 import java.util.Collection;
 
-public class Professeur {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	private long id;
+@Entity
+@Table(name = "Professeur")
+public class Professeur
+{
+	@Id
+	private long				id;
+	private String				nom;
+	private String				prenom;
+	private Collection<Cours>	cours;
 
-	private String nom;
-
-	private String prenom;
-	
-	private Collection<Cours> cours;
-
-	public long getId() {
-		return id;
+	public long getId()
+	{
+		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getNom()
+	{
+		return this.nom;
 	}
 
-	public void setNom(String nom) {
+	public void setNom(String nom)
+	{
 		this.nom = nom;
 	}
 
-	public String getPrenom() {
-		return prenom;
+	public String getPrenom()
+	{
+		return this.prenom;
 	}
 
-	public void setPrenom(String prenom) {
+	public void setPrenom(String prenom)
+	{
 		this.prenom = prenom;
 	}
 
-	public Collection<Cours> getCours() {
-		return cours;
+	public Collection<Cours> getCours()
+	{
+		return this.cours;
 	}
 
-	public void setCours(Collection<Cours> cours) {
+	public void setCours(Collection<Cours> cours)
+	{
 		this.cours = cours;
 	}
-	
+
 }

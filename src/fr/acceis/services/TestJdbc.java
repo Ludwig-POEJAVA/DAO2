@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import fr.acceis.jpa.HibernateUtil;
+import fr.acceis.services.hibernate.EtudiantServiceHibernate;
 import fr.acceis.services.interfaces.ICoursService;
 import fr.acceis.services.interfaces.ICursusService;
 import fr.acceis.services.interfaces.IEtudiantService;
@@ -34,6 +36,13 @@ public class TestJdbc
 
 	public static void main(String[] args) throws Exception
 	{
+		try
+		{
+		}
+		finally
+		{
+
+		}
 		listerEtudiants();
 		listerProfesseurs();
 		listerSalles();
@@ -50,12 +59,25 @@ public class TestJdbc
 		//		emploiDuTempsSalle("i52");
 		//		emploiDuTempsEtudiant("21002128");
 		//		emploiDuTempsProfesseur(55);
+		System.out.println("ez pz lmn sqz");
+		try
+		{
+		}
+		catch (Exception e)
+		{
+			System.out.println("j'ai glissé chef");
+		}
+		finally
+		{
+			System.out.println("Fini à " + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds());
+			HibernateUtil.close();
+		}
 	}
 
 	//	Liste les étudiants
 	private static void listerEtudiants() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		IEtudiantService etudiantService = new EtudiantService();
+		IEtudiantService etudiantService = new EtudiantServiceHibernate();
 		List<Etudiant> listeEtudiants = etudiantService.lister();
 
 		System.out.println("* Liste des étudiants :");

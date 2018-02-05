@@ -2,35 +2,46 @@ package fr.acceis.services.model;
 
 import java.util.Collection;
 
-public class Salle {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	private long id;
-	
-	private String nom;
-	
-	private Collection<Creneau> creneaux;
+@Entity
+@Table(name = "Salle")
+public class Salle
+{
+	@Id
+	private long				id;
+	private String				nom;
+	private Collection<Creneau>	creneaux;
 
-	public long getId() {
-		return id;
+	public long getId()
+	{
+		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getNom()
+	{
+		return this.nom;
 	}
 
-	public void setNom(String nom) {
+	public void setNom(String nom)
+	{
 		this.nom = nom;
 	}
 
-	public Collection<Creneau> getCreneaux() {
-		return creneaux;
+	public Collection<Creneau> getCreneaux()
+	{
+		return this.creneaux;
 	}
 
-	public void setCreneaux(Collection<Creneau> creneaux) {
+	public void setCreneaux(Collection<Creneau> creneaux)
+	{
 		this.creneaux = creneaux;
 	}
 }

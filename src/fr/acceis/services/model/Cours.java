@@ -2,46 +2,58 @@ package fr.acceis.services.model;
 
 import java.util.Collection;
 
-public class Cours {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	private long id;
-	
-	private Matiere matiere;
-	
-	private Creneau creneau;
-	
-	private Collection<Professeur> professeurs;
+@Entity
+@Table(name = "Cours")
+public class Cours
+{
+	@Id
+	private long					id;
+	private Matiere					matiere;
+	private Creneau					creneau;
+	private Collection<Professeur>	professeurs;
 
-	public long getId() {
-		return id;
+	public long getId()
+	{
+		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 
-	public Matiere getMatiere() {
-		return matiere;
+	public Matiere getMatiere()
+	{
+		return this.matiere;
 	}
 
-	public void setMatiere(Matiere matiere) {
+	public void setMatiere(Matiere matiere)
+	{
 		this.matiere = matiere;
 	}
 
-	public Collection<Professeur> getProfesseurs() {
-		return professeurs;
+	public Collection<Professeur> getProfesseurs()
+	{
+		return this.professeurs;
 	}
 
-	public void setProfesseurs(Collection<Professeur> professeurs) {
+	public void setProfesseurs(Collection<Professeur> professeurs)
+	{
 		this.professeurs = professeurs;
 	}
 
-	public Creneau getCreneau() {
-		return creneau;
+	public Creneau getCreneau()
+	{
+		return this.creneau;
 	}
 
-	public void setCreneau(Creneau creneau) {
+	public void setCreneau(Creneau creneau)
+	{
 		this.creneau = creneau;
 	}
-	
+
 }

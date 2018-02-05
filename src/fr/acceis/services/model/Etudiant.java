@@ -3,6 +3,7 @@ package fr.acceis.services.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Etudiant")
@@ -12,7 +13,9 @@ public class Etudiant
 	private String	prenom;
 	@Id
 	private String	numeroEtudiant;
-	private Cursus	cursus;
+	//TODO
+	@Transient
+	private Cursus cursus;
 
 	public Etudiant()
 	{

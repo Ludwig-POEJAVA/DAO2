@@ -2,46 +2,58 @@ package fr.acceis.services.model;
 
 import java.util.Collection;
 
-public class Matiere {
-	
-	private long id;
-	
-	private String nom;
-	
-	private Collection<Cursus> cursus;
-	
-	private Collection<Cours> cours;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	public long getId() {
-		return id;
+@Entity
+@Table(name = "Matiere")
+public class Matiere
+{
+	@Id
+	private long				id;
+	private String				nom;
+	private Collection<Cursus>	cursus;
+	private Collection<Cours>	cours;
+
+	public long getId()
+	{
+		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getNom()
+	{
+		return this.nom;
 	}
 
-	public void setNom(String nom) {
+	public void setNom(String nom)
+	{
 		this.nom = nom;
 	}
 
-	public Collection<Cours> getCours() {
-		return cours;
+	public Collection<Cours> getCours()
+	{
+		return this.cours;
 	}
 
-	public void setCours(Collection<Cours> cours) {
+	public void setCours(Collection<Cours> cours)
+	{
 		this.cours = cours;
 	}
 
-	public Collection<Cursus> getCursus() {
-		return cursus;
+	public Collection<Cursus> getCursus()
+	{
+		return this.cursus;
 	}
 
-	public void setCursus(Collection<Cursus> cursus) {
+	public void setCursus(Collection<Cursus> cursus)
+	{
 		this.cursus = cursus;
 	}
-	
+
 }
