@@ -5,8 +5,13 @@ import java.sql.SQLException;
 import fr.acceis.services.interfaces.ICursusService;
 import fr.acceis.services.model.Cursus;
 
-public class ICursusServiceHibernate implements ICursusService
+public class CursusServiceHibernate extends GenericsInheritance<Cursus> implements ICursusService
 {
+
+	public CursusServiceHibernate()
+	{
+		super(Cursus.class);
+	}
 
 	public Cursus chercherParId(long idCursus) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{

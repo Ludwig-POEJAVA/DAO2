@@ -5,13 +5,18 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Cursus")
 public class Cursus
 {
-	private String					nom;
-	private Collection<Matiere>		matieres;
+	private String nom;
+	//TODO
+	@Transient
+	private Collection<Matiere> matieres;
+	//TODO
+	@Transient
 	private Collection<Etudiant>	etudiants;
 	@Id
 	private long					id;

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.acceis.services.hibernate.GenericsInheritance;
 import fr.acceis.services.interfaces.ICoursService;
 import fr.acceis.services.model.Cours;
 import fr.acceis.services.model.Creneau;
@@ -17,8 +18,14 @@ import fr.acceis.services.model.Matiere;
 import fr.acceis.services.model.Professeur;
 import fr.acceis.services.model.Salle;
 
-public class CoursService implements ICoursService
+public class CoursService extends GenericsInheritance<Cours> implements ICoursService
 {
+
+	public CoursService()
+	{
+		super(Cours.class);
+		// TODO Auto-generated constructor stub
+	}
 
 	/* (non-Javadoc)
 	 * @see fr.acceis.services.services.ICoursService#chercherParId(long)

@@ -5,16 +5,19 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Professeur")
 public class Professeur
 {
 	@Id
-	private long				id;
-	private String				nom;
-	private String				prenom;
-	private Collection<Cours>	cours;
+	private long	id;
+	private String	nom;
+	private String	prenom;
+	//TODO
+	@Transient
+	private Collection<Cours> cours;
 
 	public long getId()
 	{

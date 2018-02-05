@@ -12,6 +12,13 @@
 		<!-- <property name="show_sql">true</property> -->
 		<property name="format_sql">true</property>
 
+		<mapping class="fr.acceis.services.model.Cours" />
+		<mapping class="fr.acceis.services.model.Creneau" />
+		<mapping class="fr.acceis.services.model.Cursus" />
 		<mapping class="fr.acceis.services.model.Etudiant" />
+		<mapping class="fr.acceis.services.model.Horaire" />
+		<mapping class="fr.acceis.services.model.Matiere" />
+		<mapping class="fr.acceis.services.model.Professeur" />
+		<mapping class="fr.acceis.services.model.Salle" />
 	</session-factory>
 </hibernate-configuration>

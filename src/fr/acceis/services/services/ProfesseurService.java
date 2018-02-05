@@ -8,24 +8,33 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.acceis.services.hibernate.GenericsInheritance;
 import fr.acceis.services.interfaces.IProfesseurService;
 import fr.acceis.services.model.Professeur;
 
-public class ProfesseurService implements IProfesseurService {
+public class ProfesseurService extends GenericsInheritance<Professeur> implements IProfesseurService
+{
+
+	public ProfesseurService()
+	{
+		super(Professeur.class);
+	}
 
 	/* (non-Javadoc)
 	 * @see fr.acceis.services.services.IProfesseurService#lister()
 	 */
-	public List<Professeur> lister() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public List<Professeur> lister() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
+	{
 		Class.forName("org.hsqldb.jdbcDriver").newInstance();
-		Connection connexion = DriverManager.getConnection("jdbc:hsqldb:data/basejpa", "sa",  "");
+		Connection connexion = DriverManager.getConnection("jdbc:hsqldb:data/basejpa", "sa", "");
 		PreparedStatement stmt = connexion.prepareStatement("SELECT * FROM professeur");
 
 		ResultSet result = stmt.executeQuery();
 
 		List<Professeur> listeProfesseurs = new ArrayList<Professeur>();
 
-		while(result.next()){
+		while (result.next())
+		{
 			String prenom = result.getString("prenom");
 			String nom = result.getString("nom");
 

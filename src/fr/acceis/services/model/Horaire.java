@@ -6,16 +6,19 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Horaire")
 public class Horaire
 {
 	@Id
-	private long				id;
-	private Date				debut;
-	private Date				fin;
-	private Collection<Creneau>	creneaux;
+	private long	id;
+	private Date	debut;
+	private Date	fin;
+	//TODO
+	@Transient
+	private Collection<Creneau> creneaux;
 
 	public long getId()
 	{

@@ -3,16 +3,23 @@ package fr.acceis.services.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Creneau")
 public class Creneau
 {
 	@Id
-	private long	id;
-	private Salle	salle;
-	private Horaire	horaire;
-	private Cours	cours;
+	private long id;
+	//TODO
+	@Transient
+	private Salle salle;
+	//TODO
+	@Transient
+	private Horaire horaire;
+	//TODO
+	@Transient
+	private Cours cours;
 
 	public long getId()
 	{

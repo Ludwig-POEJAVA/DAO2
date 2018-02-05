@@ -34,6 +34,7 @@ import fr.acceis.services.services.SalleService;
 public class TestJdbc
 {
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws Exception
 	{
 		try
@@ -66,6 +67,7 @@ public class TestJdbc
 		catch (Exception e)
 		{
 			System.out.println("j'ai glissé chef");
+			e.printStackTrace();
 		}
 		finally
 		{
@@ -282,6 +284,7 @@ public class TestJdbc
 	}
 
 	//	Affiche l'emploi du temps d'une salle
+	@SuppressWarnings("unused")
 	private static void emploiDuTempsSalle(String nomSalle) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
 		Class.forName("org.hsqldb.jdbcDriver").newInstance();
@@ -316,6 +319,7 @@ public class TestJdbc
 	}
 
 	//	Affiche l'emploi du temps d'un étudiant
+	@SuppressWarnings("unused")
 	private static void emploiDuTempsEtudiant(String numeroEtudiant) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
 		Class.forName("org.hsqldb.jdbcDriver").newInstance();
@@ -365,6 +369,7 @@ public class TestJdbc
 	}
 
 	//	Affiche l'emploi du temps d'un professeur
+	@SuppressWarnings("unused")
 	private static void emploiDuTempsProfesseur(long idProfesseur) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
 		Class.forName("org.hsqldb.jdbcDriver").newInstance();
