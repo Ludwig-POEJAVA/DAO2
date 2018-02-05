@@ -1,5 +1,6 @@
 package fr.acceis.services.hibernate;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 
 import org.hibernate.Session;
@@ -17,9 +18,9 @@ public abstract class GenericsInheritance<T>
 	}
 
 	@SuppressWarnings({"unchecked", "hiding" })
-	public <T> T trouveParId(long id) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
+	public <T> T trouveParId(Object id) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
 		Session session = HibernateUtil.getSession();
-		return (T) session.load(this.clazz, id);
+		return (T) session.load(this.clazz, (Serializable) id);
 	}
 }

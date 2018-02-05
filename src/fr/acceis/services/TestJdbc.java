@@ -11,7 +11,10 @@ import java.util.Date;
 import java.util.List;
 
 import fr.acceis.jpa.HibernateUtil;
+import fr.acceis.services.hibernate.CoursServiceHibernate;
 import fr.acceis.services.hibernate.EtudiantServiceHibernate;
+import fr.acceis.services.hibernate.ProfesseurServiceHibernate;
+import fr.acceis.services.hibernate.SalleServiceHibernate;
 import fr.acceis.services.interfaces.ICoursService;
 import fr.acceis.services.interfaces.ICursusService;
 import fr.acceis.services.interfaces.IEtudiantService;
@@ -28,8 +31,6 @@ import fr.acceis.services.services.CoursService;
 import fr.acceis.services.services.CursusService;
 import fr.acceis.services.services.EtudiantService;
 import fr.acceis.services.services.MatiereService;
-import fr.acceis.services.services.ProfesseurService;
-import fr.acceis.services.services.SalleService;
 
 public class TestJdbc
 {
@@ -39,30 +40,33 @@ public class TestJdbc
 	{
 		try
 		{
-		}
-		finally
-		{
 
-		}
-		listerEtudiants();
-		listerProfesseurs();
-		listerSalles();
-		cursusEtudiant("21002127");
-		cursusEtudiant("21002128");
-		cursusEtudiant("21002129");
-		cursusEtudiant("21002130");
-		salleCours(67);
-		listerCoursSalle("i57");
-		listerEtudiantsCours(67);
-		listerProfesseursCursus(10);
-		listerProfesseursMatiere(2);
-		listerProfsEtudiant("21002127");
-		//		emploiDuTempsSalle("i52");
-		//		emploiDuTempsEtudiant("21002128");
-		//		emploiDuTempsProfesseur(55);
-		System.out.println("ez pz lmn sqz");
-		try
-		{
+			listerEtudiants();
+			listerProfesseurs();
+			listerSalles();
+			System.out.println("\t* Liste des cursus d'étudiants :");
+			cursusEtudiant("21002127");
+			cursusEtudiant("21002128");
+			cursusEtudiant("21002129");
+			cursusEtudiant("21002130");
+			System.out.println("\t* Fin de liste des cursus d'étudiants :");
+			System.out.println();
+			System.out.println("\t* Liste des salles de cours :");
+			for (int numCours = 59; numCours <= 83; numCours += 2)
+			{
+				salleCours(numCours);
+			}
+			System.out.println("\t* Fin de liste des salles de cours :");
+			listerCoursSalle("i57");
+			listerEtudiantsCours(67);
+			listerProfesseursCursus(10);
+			listerProfesseursMatiere(2);
+			listerProfsEtudiant("21002127");
+			//		emploiDuTempsSalle("i52");
+			//		emploiDuTempsEtudiant("21002128");
+			//		emploiDuTempsProfesseur(55);
+			System.out.println("ez pz lmn sqz");
+
 		}
 		catch (Exception e)
 		{
@@ -74,6 +78,7 @@ public class TestJdbc
 			System.out.println("Fini à " + new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds());
 			HibernateUtil.close();
 		}
+		HibernateUtil.close();
 	}
 
 	//	Liste les étudiants
@@ -82,33 +87,33 @@ public class TestJdbc
 		IEtudiantService etudiantService = new EtudiantServiceHibernate();
 		List<Etudiant> listeEtudiants = etudiantService.lister();
 
-		System.out.println("* Liste des étudiants :");
+		System.out.println("\t* Liste des étudiants :");
 		for (Etudiant etudiant: listeEtudiants)
 		{
 			String prenom = etudiant.getPrenom();
 			String nom = etudiant.getNom();
 			String numeroEtudiant = etudiant.getNumeroEtudiant();
-			System.out.println(prenom + " " + nom + " (" + numeroEtudiant + ")");
+			System.out.println("\t\t" + prenom + " " + nom + " (" + numeroEtudiant + ")");
 		}
 
-		System.out.println("* Fin de la liste des étudiants :");
+		System.out.println("\t* Fin de la liste des étudiants :");
 		System.out.println();
 	}
 
 	//	Liste les professeurs
 	private static void listerProfesseurs() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		IProfesseurService professeurService = new ProfesseurService();
+		IProfesseurService professeurService = new ProfesseurServiceHibernate();
 		List<Professeur> listeProfesseurs = professeurService.lister();
 
-		System.out.println("* Liste des professeurs :");
+		System.out.println("\t* Liste des professeurs :");
 		for (Professeur professeur: listeProfesseurs)
 		{
 			String prenom = professeur.getPrenom();
 			String nom = professeur.getNom();
-			System.out.println("Pr. " + prenom + " " + nom);
+			System.out.println("\t\tPr. " + prenom + " " + nom);
 		}
-		System.out.println("* Fin de la liste des professeurs :");
+		System.out.println("\t* Fin de la liste des professeurs :");
 		System.out.println();
 
 	}
@@ -116,23 +121,23 @@ public class TestJdbc
 	//	Liste les salles
 	private static void listerSalles() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		ISalleService salleService = new SalleService();
+		ISalleService salleService = new SalleServiceHibernate();
 		List<Salle> listeSalles = salleService.lister();
 
-		System.out.println("* Liste des salles :");
+		System.out.println("\t* Liste des salles :");
 		for (Salle salle: listeSalles)
 		{
 			String nom = salle.getNom();
-			System.out.println("Salle " + nom);
+			System.out.println("\t\tSalle " + nom);
 		}
-		System.out.println("* Fin de la liste des salles :");
+		System.out.println("\t* Fin de la liste des salles :");
 		System.out.println();
 	}
 
 	//	Affiche le nom du cursus d'un étudiant
 	private static void cursusEtudiant(String numeroEtudiant) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		IEtudiantService etudiantService = new EtudiantService();
+		IEtudiantService etudiantService = new EtudiantServiceHibernate();
 		Etudiant etudiant = etudiantService.chercherParNumeroEtudiant(numeroEtudiant);
 
 		if (etudiant != null)
@@ -141,16 +146,16 @@ public class TestJdbc
 			String prenomEtudiant = etudiant.getPrenom();
 			String nomEtudiant = etudiant.getNom();
 			String numero = etudiant.getNumeroEtudiant();
-			System.out.println(prenomEtudiant + " " + nomEtudiant + " (" + numero + ") est inscrit dans le cursus " + nomCursus);
+			System.out.println("\t\t" + prenomEtudiant + " " + nomEtudiant + " (" + numero + ") est inscrit dans le cursus " + nomCursus);
 		}
-		System.out.println();
 
 	}
 
 	//	Affiche le nom de la salle dans laquelle a lieu un cours
 	private static void salleCours(long idCours) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		ICoursService coursService = new CoursService();
+		//ICoursService coursService = new CoursServiceHibernate();
+		ICoursService coursService = new CoursServiceHibernate();
 		Cours cours = coursService.chercherParId(idCours);
 
 		if (cours != null)

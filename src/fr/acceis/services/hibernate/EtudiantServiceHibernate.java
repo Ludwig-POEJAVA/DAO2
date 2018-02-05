@@ -36,8 +36,9 @@ public class EtudiantServiceHibernate extends GenericsInheritance<Etudiant> impl
 
 	public Etudiant chercherParNumeroEtudiant(String numeroEtudiant) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		Session session = HibernateUtil.getSession();
-		return session.load(Etudiant.class, numeroEtudiant);
+		//Session session = HibernateUtil.getSession();
+		//return session.load(Etudiant.class, numeroEtudiant);
+		return this.trouveParId(numeroEtudiant);
 	}
 
 	public List<Etudiant> listerEtudiantsParIdCours(long idCours) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException

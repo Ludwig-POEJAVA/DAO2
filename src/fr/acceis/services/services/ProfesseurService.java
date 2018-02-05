@@ -8,18 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.acceis.services.hibernate.GenericsInheritance;
 import fr.acceis.services.interfaces.IProfesseurService;
 import fr.acceis.services.model.Professeur;
 
-public class ProfesseurService extends GenericsInheritance<Professeur> implements IProfesseurService
+public class ProfesseurService implements IProfesseurService
 {
-
-	public ProfesseurService()
-	{
-		super(Professeur.class);
-	}
-
 	/* (non-Javadoc)
 	 * @see fr.acceis.services.services.IProfesseurService#lister()
 	 */

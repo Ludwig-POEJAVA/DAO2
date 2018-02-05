@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -15,7 +16,7 @@ public class Salle
 	private long	id;
 	private String	nom;
 	//TODO
-	@Transient
+	@OneToMany
 	private Collection<Creneau> creneaux;
 
 	public long getId()

@@ -8,21 +8,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.acceis.services.hibernate.GenericsInheritance;
 import fr.acceis.services.interfaces.IMatiereService;
 import fr.acceis.services.model.Cours;
 import fr.acceis.services.model.Matiere;
 import fr.acceis.services.model.Professeur;
 
-public class MatiereService extends GenericsInheritance<Matiere> implements IMatiereService
+public class MatiereService implements IMatiereService
 {
-
-	public MatiereService()
-	{
-		super(Matiere.class);
-		// TODO Auto-generated constructor stub
-	}
-
 	/* (non-Javadoc)
 	 * @see fr.acceis.services.services.IMatiereService#chercherParId(long)
 	 */

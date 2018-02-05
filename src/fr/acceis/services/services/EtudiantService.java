@@ -8,20 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.acceis.services.hibernate.GenericsInheritance;
 import fr.acceis.services.interfaces.IEtudiantService;
 import fr.acceis.services.model.Cursus;
 import fr.acceis.services.model.Etudiant;
 
-public class EtudiantService extends GenericsInheritance<Etudiant> implements IEtudiantService
+public class EtudiantService implements IEtudiantService
 {
-
-	public EtudiantService()
-	{
-		super(Etudiant.class);
-		// TODO Auto-generated constructor stub
-	}
-
 	/* (non-Javadoc)
 	 * @see fr.acceis.services.services.IEtudiantService#lister()
 	 */

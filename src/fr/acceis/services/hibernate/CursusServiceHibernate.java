@@ -15,8 +15,7 @@ public class CursusServiceHibernate extends GenericsInheritance<Cursus> implemen
 
 	public Cursus chercherParId(long idCursus) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return this.trouveParId(idCursus);
 	}
 
 }

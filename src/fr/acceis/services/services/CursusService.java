@@ -8,21 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.acceis.services.hibernate.GenericsInheritance;
 import fr.acceis.services.interfaces.ICursusService;
 import fr.acceis.services.model.Cours;
 import fr.acceis.services.model.Cursus;
 import fr.acceis.services.model.Matiere;
 import fr.acceis.services.model.Professeur;
 
-public class CursusService extends GenericsInheritance<Cursus> implements ICursusService
+public class CursusService implements ICursusService
 {
-
-	public CursusService()
-	{
-		super(Cursus.class);
-	}
-
 	/* (non-Javadoc)
 	 * @see fr.acceis.services.services.ICursusService#chercherParId(long)
 	 */

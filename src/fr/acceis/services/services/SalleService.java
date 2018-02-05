@@ -8,18 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.acceis.services.hibernate.GenericsInheritance;
 import fr.acceis.services.interfaces.ISalleService;
 import fr.acceis.services.model.Salle;
 
-public class SalleService extends GenericsInheritance<Salle> implements ISalleService
+public class SalleService implements ISalleService
 {
-
-	public SalleService()
-	{
-		super(Salle.class);
-	}
-
 	/* (non-Javadoc)
 	 * @see fr.acceis.services.services.ISalleService#lister()
 	 */

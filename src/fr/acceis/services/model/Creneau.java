@@ -2,6 +2,8 @@ package fr.acceis.services.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -12,13 +14,13 @@ public class Creneau
 	@Id
 	private long id;
 	//TODO
-	@Transient
+	@ManyToOne
 	private Salle salle;
 	//TODO
 	@Transient
 	private Horaire horaire;
 	//TODO
-	@Transient
+	@OneToOne
 	private Cours cours;
 
 	public long getId()
