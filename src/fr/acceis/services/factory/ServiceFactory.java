@@ -4,9 +4,6 @@ public class ServiceFactory
 {
 	private static GenericServiceFactory factory = null;
 
-	/**
-	 * @param param
-	 */
 	public static GenericServiceFactory createServiceFactory(String param)
 	{
 		if (factory != null)
