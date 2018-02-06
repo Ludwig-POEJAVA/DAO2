@@ -13,7 +13,6 @@ import org.hibernate.Session;
 
 import fr.acceis.jpa.HibernateUtil;
 import fr.acceis.services.interfaces.ICoursService;
-import fr.acceis.services.interfaces.ICursusService;
 import fr.acceis.services.interfaces.IEtudiantService;
 import fr.acceis.services.interfaces.IMatiereService;
 import fr.acceis.services.model.Cours;

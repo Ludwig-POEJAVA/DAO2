@@ -8,8 +8,8 @@ public class ServiceFactory
 	{
 		if (factory != null)
 		{
-			System.out.println("FAIL EXISTANT");
-			//pas cool, factory déja créée
+			System.out.println("factory already created");
+			return factory;
 		}
 		else if (param == null)
 		{

@@ -22,7 +22,6 @@ public class CoursServiceHibernate extends GenericsInheritance<Cours> implements
 
 	public List<Cours> listerParSalle(String nomSalle) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
