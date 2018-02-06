@@ -1,4 +1,4 @@
-package fr.acceis.services.services;
+package fr.acceis.services.JDBC;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -17,7 +17,7 @@ import fr.acceis.services.model.Matiere;
 import fr.acceis.services.model.Professeur;
 import fr.acceis.services.model.Salle;
 
-public class CoursService implements ICoursService
+public class CoursServiceJDBC implements ICoursService
 {
 	/* (non-Javadoc)
 	 * @see fr.acceis.services.services.ICoursService#chercherParId(long)

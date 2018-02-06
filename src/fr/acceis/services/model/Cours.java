@@ -4,9 +4,10 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Cours")
@@ -14,14 +15,14 @@ public class Cours
 {
 	@Id
 	private long id;
-	//TODO
-	@Transient
+
+	@ManyToOne
 	private Matiere matiere;
-	//TODO
+
 	@OneToOne
 	private Creneau creneau;
-	//TODO
-	@Transient
+
+	@ManyToMany
 	private Collection<Professeur> professeurs;
 
 	public long getId()

@@ -1,4 +1,4 @@
-package fr.acceis.services.services;
+package fr.acceis.services.JDBC;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,7 @@ import java.util.List;
 import fr.acceis.services.interfaces.IProfesseurService;
 import fr.acceis.services.model.Professeur;
 
-public class ProfesseurService implements IProfesseurService
+public class ProfesseurServiceJDBC implements IProfesseurService
 {
 	/* (non-Javadoc)
 	 * @see fr.acceis.services.services.IProfesseurService#lister()

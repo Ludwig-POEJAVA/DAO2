@@ -1,4 +1,4 @@
-package fr.acceis.services.services;
+package fr.acceis.services.JDBC;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +13,7 @@ import fr.acceis.services.model.Cours;
 import fr.acceis.services.model.Matiere;
 import fr.acceis.services.model.Professeur;
 
-public class MatiereService implements IMatiereService
+public class MatiereServiceJDBC implements IMatiereService
 {
 	/* (non-Javadoc)
 	 * @see fr.acceis.services.services.IMatiereService#chercherParId(long)

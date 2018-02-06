@@ -4,22 +4,24 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Cursus")
 public class Cursus
 {
 	private String nom;
-	//TODO
-	@Transient
+
+	@ManyToMany
 	private Collection<Matiere> matieres;
-	//TODO
-	@Transient
-	private Collection<Etudiant>	etudiants;
+
+	@OneToMany(mappedBy = "cursus")
+	private Collection<Etudiant> etudiants;
+
 	@Id
-	private long					id;
+	private long id;
 
 	public Collection<Matiere> getMatieres()
 	{

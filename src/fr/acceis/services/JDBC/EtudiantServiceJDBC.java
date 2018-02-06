@@ -1,4 +1,4 @@
-package fr.acceis.services.services;
+package fr.acceis.services.JDBC;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +12,7 @@ import fr.acceis.services.interfaces.IEtudiantService;
 import fr.acceis.services.model.Cursus;
 import fr.acceis.services.model.Etudiant;
 
-public class EtudiantService implements IEtudiantService
+public class EtudiantServiceJDBC implements IEtudiantService
 {
 	/* (non-Javadoc)
 	 * @see fr.acceis.services.services.IEtudiantService#lister()

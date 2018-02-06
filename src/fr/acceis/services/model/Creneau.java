@@ -5,7 +5,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Creneau")
@@ -13,13 +12,13 @@ public class Creneau
 {
 	@Id
 	private long id;
-	//TODO
+
 	@ManyToOne
 	private Salle salle;
-	//TODO
-	@Transient
+
+	@ManyToOne
 	private Horaire horaire;
-	//TODO
+
 	@OneToOne
 	private Cours cours;
 

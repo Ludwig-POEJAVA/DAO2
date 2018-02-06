@@ -13,7 +13,7 @@ public class Etudiant
 	private String	prenom;
 	@Id
 	private String	numeroEtudiant;
-	//TODO
+
 	@ManyToOne
 	private Cursus cursus;
 

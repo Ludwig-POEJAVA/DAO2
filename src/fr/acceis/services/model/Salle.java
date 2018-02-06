@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Salle")
@@ -15,7 +14,7 @@ public class Salle
 	@Id
 	private long	id;
 	private String	nom;
-	//TODO
+
 	@OneToMany
 	private Collection<Creneau> creneaux;
 

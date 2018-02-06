@@ -1,4 +1,4 @@
-package fr.acceis.services.services;
+package fr.acceis.services.JDBC;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,7 @@ import java.util.List;
 import fr.acceis.services.interfaces.ISalleService;
 import fr.acceis.services.model.Salle;
 
-public class SalleService implements ISalleService
+public class SalleServiceJDBC implements ISalleService
 {
 	/* (non-Javadoc)
 	 * @see fr.acceis.services.services.ISalleService#lister()

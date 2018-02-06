@@ -11,10 +11,8 @@ import java.util.Date;
 import java.util.List;
 
 import fr.acceis.jpa.HibernateUtil;
-import fr.acceis.services.hibernate.CoursServiceHibernate;
-import fr.acceis.services.hibernate.EtudiantServiceHibernate;
-import fr.acceis.services.hibernate.ProfesseurServiceHibernate;
-import fr.acceis.services.hibernate.SalleServiceHibernate;
+import fr.acceis.services.factory.GenericServiceFactory;
+import fr.acceis.services.factory.ServiceFactory;
 import fr.acceis.services.interfaces.ICoursService;
 import fr.acceis.services.interfaces.ICursusService;
 import fr.acceis.services.interfaces.IEtudiantService;
@@ -27,13 +25,10 @@ import fr.acceis.services.model.Etudiant;
 import fr.acceis.services.model.Matiere;
 import fr.acceis.services.model.Professeur;
 import fr.acceis.services.model.Salle;
-import fr.acceis.services.services.CoursService;
-import fr.acceis.services.services.CursusService;
-import fr.acceis.services.services.EtudiantService;
-import fr.acceis.services.services.MatiereService;
 
 public class TestJdbc
 {
+	static GenericServiceFactory factory = ServiceFactory.createServiceFactory("Hibernate");
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws Exception
@@ -57,11 +52,12 @@ public class TestJdbc
 				salleCours(numCours);
 			}
 			System.out.println("\t* Fin de liste des salles de cours :");
+			System.out.println();
 			listerCoursSalle("i57");
 			listerEtudiantsCours(67);
 			listerProfesseursCursus(10);
 			listerProfesseursMatiere(2);
-			listerProfsEtudiant("21002127");
+			listerProfsEtudiant("21002127");/**/
 			//		emploiDuTempsSalle("i52");
 			//		emploiDuTempsEtudiant("21002128");
 			//		emploiDuTempsProfesseur(55);
@@ -70,7 +66,9 @@ public class TestJdbc
 		}
 		catch (Exception e)
 		{
+			System.out.println("##################################");
 			System.out.println("j'ai glissé chef");
+			System.out.println("##################################");
 			e.printStackTrace();
 		}
 		finally
@@ -84,7 +82,7 @@ public class TestJdbc
 	//	Liste les étudiants
 	private static void listerEtudiants() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		IEtudiantService etudiantService = new EtudiantServiceHibernate();
+		IEtudiantService etudiantService = factory.getEtudiantService();
 		List<Etudiant> listeEtudiants = etudiantService.lister();
 
 		System.out.println("\t* Liste des étudiants :");
@@ -103,7 +101,7 @@ public class TestJdbc
 	//	Liste les professeurs
 	private static void listerProfesseurs() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		IProfesseurService professeurService = new ProfesseurServiceHibernate();
+		IProfesseurService professeurService = factory.getProfesseurService();
 		List<Professeur> listeProfesseurs = professeurService.lister();
 
 		System.out.println("\t* Liste des professeurs :");
@@ -121,7 +119,7 @@ public class TestJdbc
 	//	Liste les salles
 	private static void listerSalles() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		ISalleService salleService = new SalleServiceHibernate();
+		ISalleService salleService = factory.getSalleService();
 		List<Salle> listeSalles = salleService.lister();
 
 		System.out.println("\t* Liste des salles :");
@@ -137,7 +135,7 @@ public class TestJdbc
 	//	Affiche le nom du cursus d'un étudiant
 	private static void cursusEtudiant(String numeroEtudiant) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		IEtudiantService etudiantService = new EtudiantServiceHibernate();
+		IEtudiantService etudiantService = factory.getEtudiantService();
 		Etudiant etudiant = etudiantService.chercherParNumeroEtudiant(numeroEtudiant);
 
 		if (etudiant != null)
@@ -155,25 +153,24 @@ public class TestJdbc
 	private static void salleCours(long idCours) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
 		//ICoursService coursService = new CoursServiceHibernate();
-		ICoursService coursService = new CoursServiceHibernate();
+		ICoursService coursService = factory.getCoursService();
 		Cours cours = coursService.chercherParId(idCours);
 
 		if (cours != null)
 		{
 			String nom = cours.getCreneau().getSalle().getNom();
-			System.out.println("Le cours " + idCours + " aura lieu en salle " + nom);
+			System.out.println("\t\tLe cours " + idCours + " aura lieu en salle " + nom);
 		}
-		System.out.println();
 	}
 
 	//	Affiche le nom des cours ayant lieu dans une salle
 	private static void listerCoursSalle(String nomSalle) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		ICoursService coursService = new CoursService();
+		ICoursService coursService = factory.getCoursService();
 		List<Cours> listeCours = coursService.listerParSalle(nomSalle);
 
 		SimpleDateFormat formater = new SimpleDateFormat("dd\\MM\\yyyy à HH:mm");
-		System.out.println("* Les cours suivants ont lieu en salle " + nomSalle + " :\n");
+		System.out.println("\t* Les cours suivants ont lieu en salle " + nomSalle + " :\n");
 
 		for (Cours cours: listeCours)
 		{
@@ -182,15 +179,15 @@ public class TestJdbc
 			String nomProfesseur = cours.getProfesseurs().iterator().next().getNom();
 			Date horaireDebut = cours.getCreneau().getHoraire().getDebut();
 			Date horaireFin = cours.getCreneau().getHoraire().getFin();
-			System.out.println("------------------------------");
-			System.out.println("Cours de " + nomMatiere);
-			System.out.println("Assuré par Pr. " + prenomProfesseur + " " + nomProfesseur);
-			System.out.println("En salle " + nomSalle);
-			System.out.println("Début : " + formater.format(horaireDebut));
-			System.out.println("Fin : " + formater.format(horaireFin));
-			System.out.println("------------------------------");
+			System.out.println("\t\t------------------------------");
+			System.out.println("\t\tCours de " + nomMatiere);
+			System.out.println("\t\tAssuré par Pr. " + prenomProfesseur + " " + nomProfesseur);
+			System.out.println("\t\tEn salle " + nomSalle);
+			System.out.println("\t\tDébut : " + formater.format(horaireDebut));
+			System.out.println("\t\tFin : " + formater.format(horaireFin));
+			System.out.println("\t\t------------------------------");
 		}
-		System.out.println("* Fin de la liste des cours");
+		System.out.println("\t* Fin de la liste des cours");
 		System.out.println();
 
 	}
@@ -198,26 +195,26 @@ public class TestJdbc
 	//	Affiche le nom des étudiants qui assistent à un cours
 	private static void listerEtudiantsCours(long idCours) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		IEtudiantService etudiantService = new EtudiantService();
+		IEtudiantService etudiantService = factory.getEtudiantService();
 		List<Etudiant> etudiants = etudiantService.listerEtudiantsParIdCours(idCours);
 
-		System.out.println("* Les étudiants suivants assisteront au cours " + idCours + " :");
+		System.out.println("\t* Les étudiants suivants assisteront au cours " + idCours + " :");
 		for (Etudiant etudiant: etudiants)
 		{
 			String prenomEtudiant = etudiant.getPrenom();
 			String nomEtudiant = etudiant.getNom();
 			String numero = etudiant.getNumeroEtudiant();
 
-			System.out.println(prenomEtudiant + " " + nomEtudiant + " (" + numero + ")");
+			System.out.println("\t\t" + prenomEtudiant + " " + nomEtudiant + " (" + numero + ")");
 		}
-		System.out.println("* Fin de la liste des étudiants");
+		System.out.println("\t* Fin de la liste des étudiants");
 		System.out.println();
 	}
 
 	//	Affiche le nom des professeurss qui enseignent dans un cursus
 	private static void listerProfesseursCursus(long idCursus) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		ICursusService cursusService = new CursusService();
+		ICursusService cursusService = factory.getCursusService();
 		Cursus cursus = cursusService.chercherParId(idCursus);
 
 		System.out.println("* Les professeurs suivants enseignent au sein du cursus " + cursus.getNom() + " :");
@@ -241,7 +238,7 @@ public class TestJdbc
 	//	Affiche le nom des professeurs qui enseignent une matière
 	private static void listerProfesseursMatiere(long idMatiere) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		IMatiereService matiereService = new MatiereService();
+		IMatiereService matiereService = factory.getMatiereService();
 		Matiere matiere = matiereService.chercherParId(idMatiere);
 
 		String nomMatiere = matiere.getNom();
@@ -262,12 +259,12 @@ public class TestJdbc
 	//	Affiche des profs qui enseignent à un étudiant
 	private static void listerProfsEtudiant(String numeroEtudiant) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
-		IEtudiantService etudiantService = new EtudiantService();
+		IEtudiantService etudiantService = factory.getEtudiantService();
 		Etudiant etudiant = etudiantService.chercherParNumeroEtudiant(numeroEtudiant);
 		if (etudiant != null)
 		{
 			long idCursus = etudiant.getCursus().getId();
-			Cursus cursus = new CursusService().chercherParId(idCursus);
+			Cursus cursus = factory.getCursusService().chercherParId(idCursus);
 
 			System.out.println("* Les professeurs suivants enseignent à l'étudiant " + etudiant.getPrenom() + " " + etudiant.getNom() + " :");
 			for (Matiere matiere: cursus.getMatieres())

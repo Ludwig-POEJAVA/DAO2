@@ -4,8 +4,9 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Matiere")
@@ -14,11 +15,11 @@ public class Matiere
 	@Id
 	private long	id;
 	private String	nom;
-	//TODO
-	@Transient
+
+	@ManyToMany
 	private Collection<Cursus> cursus;
-	//TODO
-	@Transient
+
+	@OneToMany
 	private Collection<Cours> cours;
 
 	public long getId()
